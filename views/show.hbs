@@ -39,9 +39,26 @@
 
       <button class="btn btn-success"><a href="/restaurants/{{ restaurant._id }}/edit" style="color:white; text-decoration: none">Edit</a></button>
       <form method="POST" action="/restaurants/{{ restaurant._id }}?_method=DELETE" style="display: inline;">
-        <button type="submit" class="btn btn-secondary">Delete</button>
+        <button type="submit" class="btn btn-secondary delete-button">Delete</button>
       </form>
     </div>
   </div>
 </div>
 
+<script>
+  //before delete data make sure user really want to do it
+  const allDeleteButton = document.querySelectorAll('.delete-button')
+
+  Array.prototype.slice.call(allDeleteButton)
+    .forEach(function (deleteButton) {
+      deleteButton.addEventListener('click', function (event) {
+        event.preventDefault()
+
+        const confirmSubmit = confirm('Are you sure you want to delete this?')
+        if (confirmSubmit) {
+          event.target.parentElement.submit()
+        }
+      })
+    })
+
+</script>
