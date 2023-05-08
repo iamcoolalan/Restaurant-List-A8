@@ -7,7 +7,7 @@
         <div class="card-body">
           <h5 class="card-title">Edit <b><u>{{ restaurant.name }}</u></b> info <i class="fa-solid fa-gear"></i></h5>
           <hr>
-          <form action="/restaurants/{{ restaurant._id }}/edit" method="POST" class="needs-validation" novalidate>
+          <form action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST" class="needs-validation" novalidate>
             <div class="row mb-3 g-2">
               <label for="name" class="col-md-4 col-form-label">
                 Name

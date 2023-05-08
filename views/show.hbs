@@ -38,34 +38,10 @@
         style="max-width: 600px;">
 
       <button class="btn btn-success"><a href="/restaurants/{{ restaurant._id }}/edit" style="color:white; text-decoration: none">Edit</a></button>
-      <button class="btn btn-secondary">
-        <a href="/restaurants/{{ restaurant._id }}/delete" style="color:white; text-decoration: none" class="delete">Delete</a>
-      </button>
+      <form method="POST" action="/restaurants/{{ restaurant._id }}?_method=DELETE" style="display: inline;">
+        <button type="submit" class="btn btn-secondary">Delete</button>
+      </form>
     </div>
   </div>
 </div>
 
-<script>
-  const deleteLinks = document.querySelector('.delete')
-
-    deleteLinks.addEventListener('click', function (event) {
-      event.preventDefault()
-
-      const url = event.target.href
-      const confirmed = confirm('Are you sure you want to delete this?')
-
-      if (confirmed) {
-        fetch(url, {
-          method: 'POST'
-        })
-          .then(response => {
-            if (response.ok) {
-              window.location.href = '/'
-            } else {
-              throw new Error('Something went wrong')
-            }
-          })
-          .catch(error => console.log(error))
-      }
-    })
-</script>

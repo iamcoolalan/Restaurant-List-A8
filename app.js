@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const Restaurants = require('./models/restaurants')
 const bodyParser = require('body-parser')
-const restaurants = require('./models/restaurants')
+const methodOverride = require('method-override')
 
 //start express and set the port
 const app = express()
@@ -34,6 +34,7 @@ app.set('view engine', 'hbs')
 //setting resources path
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 //setting routes
 
@@ -75,7 +76,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const update = req.body
 
@@ -89,7 +90,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 //delete function
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
 
   return Restaurants.findById(id)
@@ -101,25 +102,25 @@ app.post('/restaurants/:id/delete', (req, res) => {
 //search function
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
-  
- return Restaurants.find()
-  .lean()
-  .then(restaurants => restaurants.filter(function (restaurant) {
-    //find restaurants which match conditions
-    const searchByName = restaurant.name.toLowerCase().trim().includes(keyword)
-    const searchByCategory = restaurant.category.toLowerCase().includes(keyword)
 
-    return searchByName || searchByCategory
-  }))
-   .then(restaurants => {
-    //if there is no match restaurant then render 'error' page
-     if (restaurants.length !== 0) {
-       res.render('index', { restaurants, keyword })
-     } else {
-       res.render('error', { keyword })
-     }
-   })
-   .catch(error => console.log(error))
+  return Restaurants.find()
+    .lean()
+    .then(restaurants => restaurants.filter(function (restaurant) {
+      //find restaurants which match conditions
+      const searchByName = restaurant.name.toLowerCase().trim().includes(keyword)
+      const searchByCategory = restaurant.category.toLowerCase().includes(keyword)
+
+      return searchByName || searchByCategory
+    }))
+    .then(restaurants => {
+      //if there is no match restaurant then render 'error' page
+      if (restaurants.length !== 0) {
+        res.render('index', { restaurants, keyword })
+      } else {
+        res.render('error', { keyword })
+      }
+    })
+    .catch(error => console.log(error))
 })
 
 //start and listen on the Express server
