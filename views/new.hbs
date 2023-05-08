@@ -1,0 +1,184 @@
+<!--  ./views/index.handlebars -->
+<div class="container py-5">
+
+  <div class="row">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">New Restaurant <i class="fa-solid fa-house"></i></h5>
+          <hr>
+          <form action="/restaurants" method="POST" class="needs-validation" novalidate>
+            <div class="row mb-3 g-2">
+              <label for="name" class="col-md-4 col-form-label">
+                Name
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name" placeholder="Restaurant name" class="form-control" id="name" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please type restaurant's name.
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="name-en" class="col-md-4 col-form-label">
+                English name
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name_en" placeholder="English name" class="form-control" id="name-en">
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="category" class="col-md-4 col-form-label">
+                Category
+              </label>
+              <div class="col-md-8">
+                <input list="categories" name="category" placeholder="Category" class="form-control" id="category" required>
+                <datalist id="categories">
+                  <option>中東料理</option>
+                  <option>義式餐廳</option>
+                  <option>酒吧</option>
+                  <option>日本料理</option>
+                  <option>美式</option>
+                  <option>咖啡</option>
+                </datalist>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please choose one category or type new one
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="image" class="col-md-4 col-form-label">
+                Image
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="image" placeholder="Image URL" class="form-control" id="image" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please type restaurant's image URL
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="location" class="col-md-4 col-form-label">
+                Location
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="location" placeholder="Restaurant's address" class="form-control" id="location" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please type restaurant's address
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="phone" class="col-md-4 col-form-label">
+                Phone
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="phone" placeholder="Restaurant's phone number" class="form-control" id="phone" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please type restaurant's number
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="google_map" class="col-md-4 col-form-label">
+                Google map
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="google_map" placeholder="Restaurant's google map URL" class="form-control"
+                  id="google_map" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please type restaurant's google map url
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="rating" class="col-md-4 col-form-label">
+                Rating
+              </label>
+              <div class="col-md-8">
+                <input type="number" name="rating" class="form-control" placeholder="Rate your score between 0.0 ~ 5.0"
+                  id="rating" step="0.1" min="0.0" max="5.0" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please score the point
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3 g-2">
+              <label for="description" class="col-md-4 col-form-label">
+                Description
+              </label>
+              <div class="col-md-8">
+                <textarea id="description" name="description" placeholder="Type your description" class="form-control"
+                  rows="3" cols="66" required></textarea>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please type restaurant's description
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-success" type="submit">Create</button>
+          </form>
+        </div>
+
+        <small class="card-footer text-muted text-end">
+          Idea is inspired by Alpha Camp
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+      
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+</script>
+
