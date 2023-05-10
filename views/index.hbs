@@ -14,12 +14,12 @@
           <div class="input-group">
             <select class="form-select" id="sort" name="sort">
               <option>選擇排序方式</option>
-              <option {{#if (sort selectedOption '新 > 舊' )}}selected{{/if}}>新 > 舊</option>
-              <option {{#if (sort selectedOption '舊 > 新' )}}selected{{/if}}>舊 > 新</option>
-              <option {{#if (sort selectedOption 'A > Z')}}selected{{/if}}>A > Z</option>
-              <option {{#if (sort selectedOption 'Z > A')}}selected{{/if}}>Z > A</option>
-              <option {{#if (sort selectedOption '類別')}}selected{{/if}}>類別</option>
-              <option {{#if (sort selectedOption '地區')}}selected{{/if}}>地區</option>
+              <option {{#if (checkSelectedValue selectedOption '新 > 舊' )}}selected{{/if}}>新 > 舊</option>
+              <option {{#if (checkSelectedValue selectedOption '舊 > 新' )}}selected{{/if}}>舊 > 新</option>
+              <option {{#if (checkSelectedValue selectedOption 'A > Z')}}selected{{/if}}>A > Z</option>
+              <option {{#if (checkSelectedValue selectedOption 'Z > A')}}selected{{/if}}>Z > A</option>
+              <option {{#if (checkSelectedValue selectedOption '類別')}}selected{{/if}}>類別</option>
+              <option {{#if (checkSelectedValue selectedOption '地區')}}selected{{/if}}>地區</option>
             </select>
           </div>
         </div>

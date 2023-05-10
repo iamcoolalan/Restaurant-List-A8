@@ -18,7 +18,7 @@ app.engine('hbs', exphbs({
   //express-handlebars customs helper
   helpers: {
     //compare whether two values are equal or not.
-    sort: function (value1, value2) {
+    checkSelectedValue: function (value1, value2) {
       return value1 === value2
     }
   }
