@@ -2,7 +2,6 @@
 A simple web application for restaurant fanatic
 
 ![JavaScript Style Guide](./public/pictures/homepage.png)
-![JavaScript Style Guide](./public/pictures/create.png)
 
 ## Features
 
@@ -13,6 +12,7 @@ A simple web application for restaurant fanatic
 - delete restaurant
 - searching restaurant by name
 - searching restaurant by category
+- sort restaurants by chosen condition
 
 ## How to use 
 
@@ -24,19 +24,37 @@ A simple web application for restaurant fanatic
    npm install
    ```
 
-4. after the installation complete , keep typing
+4. after the installation complete,set env params to connect your MongoDB
+
+   ```bash
+   MONGODB_URI=mongodb+srv://<Your MongoDB Account>:<Your MongoDB Password>@cluster0.xxxx.xxxx.net/<Your MongoDB Table><?retryWrites=true&w=majority
+   ```
+
+5. create test data
+
+   ```bash
+   npm run seed
+   ```   
+
+6. if you see 'done' message, use below command to end it
+
+    ```bash
+   ctrl + c
+   ```
+
+7. after you created test data , keep typing
 
    ```bash
    npm run start
    ```
 
-5. if you see this message means the server is on, you can use that URL to go into the website
+8. if you see this message means the server is on, you can use that URL to go into the website
 
    ```bash
    App is running on http://localhost:3000
    ```  
 
-6. if you want to stop it, use command below
+9. if you want to stop it, use command below
 
    ```bash
    ctrl + c
