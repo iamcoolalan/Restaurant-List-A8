@@ -12,7 +12,17 @@ const app = express()
 const port = 3000
 
 //setting template engine
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({
+  defaultLayout: 'main',
+  extname: '.hbs',
+  //express-handlebars customs helper
+  helpers: {
+    //compare whether two values are equal or not.
+    sort: function (value1, value2) {
+      return value1 === value2
+    }
+  }
+}))
 app.set('view engine', 'hbs')
 
 //setting resources path
