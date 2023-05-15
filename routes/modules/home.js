@@ -27,8 +27,12 @@ router.get('/', (req, res) => {
   Restaurants.find()
     .lean()
     .sort({ name: 'asc' })
-    .then(restaurants => res.render('index', { restaurants }))
-    .catch(error => console.log(error))
+    .then(restaurants => res.status(200).render('index', { restaurants }))
+    .catch(
+      error => {
+      console.log(error)
+      res.render('errorPage',{error: error.message})
+    })
 })
 
 //search function
@@ -36,6 +40,7 @@ router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
   //use sort function which define before to sort the restaurant list
   const sort = sortOption(req.query)
+  const error = `Can't not find any result with keyword:${keyword}`
 
   return Restaurants.find()
     .lean()
@@ -50,12 +55,16 @@ router.get('/search', (req, res) => {
     .then(restaurants => {
       //if there is no match restaurant then render 'error' page
       if (restaurants.length !== 0) {
-        res.render('index', { restaurants, keyword, selectedOption: sort.selectedOption })
+        res.status(200).render('index', { restaurants, keyword, selectedOption: sort.selectedOption })
       } else {
-        res.render('error', { keyword })
+        res.status(404).render('error', { error, keyword })
       }
     })
-    .catch(error => console.log(error))
+    .catch(
+      error => {
+        console.log(error)
+        res.status(500).render('errorPage', { error: error.message })
+      })
 })
 
 module.exports = router

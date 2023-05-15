@@ -36,25 +36,19 @@ A simple web application for restaurant fanatic
    npm run seed
    ```   
 
-6. if you see 'done' message, use below command to end it
-
-    ```bash
-   ctrl + c
-   ```
-
-7. after you created test data , keep typing
+6. after you created test data , keep typing
 
    ```bash
    npm run start
    ```
 
-8. if you see this message means the server is on, you can use that URL to go into the website
+7. if you see this message means the server is on, you can use that URL to go into the website
 
    ```bash
    App is running on http://localhost:3000
    ```  
 
-9. if you want to stop it, use command below
+8. if you want to stop it, use command below
 
    ```bash
    ctrl + c
