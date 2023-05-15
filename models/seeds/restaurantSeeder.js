@@ -2,11 +2,10 @@ const Restaurants = require('../restaurants')
 const restaurantsList = require('../../restaurant.json')
 const db = require('../../config/mongoose')
 
-
+//After finishing creating the seed data close the database
 db.once('open', () => {
-  restaurantsList.results.forEach(restaurant => {
-    Restaurants.create(restaurant)
-  })
+  console.log('Generate seed data')
 
-  console.log('done')
+  Restaurants.create(restaurantsList.results).finally(() => db.close())
+  console.log('Complete!')
 })
